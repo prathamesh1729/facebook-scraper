@@ -186,6 +186,9 @@ def _extract_text(article):
             response = _session.get(url, timeout=_timeout)
             article = response.html.find('.story_body_container', first=True)
 
+    if article is None:
+        return None
+
     nodes = article.find('p, header')
     if nodes:
         post_text = []
